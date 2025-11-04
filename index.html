@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MVSR Food Hub</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="hero">
+    <h1>🍴 MVSR FOOD HUB</h1>
+    <p>Your campus cravings — one place, many flavours.</p>
+  </header>
+
+  <!-- PLACE LIST -->
+  <section id="places" class="places-section">
+    <h2>Explore MVSR Food Hub</h2>
+    <p class="section-tagline">From chai to dosa — find your favourite spot below.</p>
+
+    <div class="places-container">
+      <div class="place-item">
+        <img src="images/chaiverse.jpg" alt="Chaiverse">
+        <h3>Chaiverse</h3>
+        <p>Tea and quick bites.</p>
+        <button class="menu-btn" onclick="showMenu('chaiverse')">View Menu</button>
+      </div>
+
+      <div class="place-item">
+        <img src="images/juicejunction.jpg" alt="Juice Junction">
+        <h3>Juice Junction</h3>
+        <p>Fresh juices and shakes.</p>
+        <button class="menu-btn" onclick="showMenu('juicejunction')">View Menu</button>
+      </div>
+
+      <div class="place-item">
+        <img src="images/maggimitra.jpg" alt="Maggi Mitra">
+        <h3>Maggi Mitra</h3>
+        <p>Maggi varieties and quick noodles.</p>
+        <button class="menu-btn" onclick="showMenu('maggimitra')">View Menu</button>
+      </div>
+
+      <div class="place-item">
+        <img src="images/southstation.jpg" alt="South Station">
+        <h3>South Station</h3>
+        <p>Idli, dosa and south meals.</p>
+        <button class="menu-btn" onclick="showMenu('southstation')">View Menu</button>
+      </div>
+
+      <div class="place-item">
+        <img src="images/spicehub.jpg" alt="Spice Hub">
+        <h3>Spice Hub</h3>
+        <p>Spicy mains and combos.</p>
+        <button class="menu-btn" onclick="showMenu('spicehub')">View Menu</button>
+      </div>
+
+      <div class="place-item">
+        <img src="images/sweetspot.jpg" alt="Sweet Spot">
+        <h3>Sweet Spot</h3>
+        <p>Desserts and treats.</p>
+        <button class="menu-btn" onclick="showMenu('sweetspot')">View Menu</button>
+      </div>
+    </div>
+  </section>
+<!-- ====== TOKEN / QUEUE PANEL (Paste below the Places section) ====== -->
+<section id="token-panel" class="token-panel">
+  <h2>Get Token / Current Queue</h2>
+
+  <!-- User area (click Get Token) -->
+  <div class="token-user-grid">
+    <!-- Buttons are created in HTML for clarity; they match place ids used in the site -->
+    <div class="token-card">
+      <h3>Chaiverse</h3>
+      <button class="get-token" data-place="chaiverse">Get Token</button>
+    </div>
+
+    <div class="token-card">
+      <h3>Juice Junction</h3>
+      <button class="get-token" data-place="juicejunction">Get Token</button>
+    </div>
+
+    <div class="token-card">
+      <h3>Maggi Mitra</h3>
+      <button class="get-token" data-place="maggimitra">Get Token</button>
+    </div>
+
+    <div class="token-card">
+      <h3>South Station</h3>
+      <button class="get-token" data-place="southstation">Get Token</button>
+    </div>
+
+    <div class="token-card">
+      <h3>Spice Hub</h3>
+      <button class="get-token" data-place="spicehub">Get Token</button>
+    </div>
+
+    <div class="token-card">
+      <h3>Sweet Spot</h3>
+      <button class="get-token" data-place="sweetspot">Get Token</button>
+    </div>
+  </div>
+
+  <!-- Confirmation area for user token -->
+  <div id="token-confirm" class="token-confirm hidden"></div>
+
+  <!-- Staff / Display area: show queue per stall and Serve Next -->
+  <div class="token-staff">
+    <h3>Current Queues (Staff view)</h3>
+    <div id="queues-container" class="queues-container">
+      <!-- JS will render each stall queue here -->
+    </div>
+  </div>
+</section>
+<!-- ====== end token panel ====== -->
+
+  <!-- TODAY'S SPECIALS (text-only) -->
+  <section id="today-specials" class="specials">
+    <h2>Today's Specials</h2>
+    <ul class="specials-list">
+      <li>Monday — Chaiverse Special</li>
+      <li>Tuesday — Juice Junction Mango Shake</li>
+      <li>Wednesday — Maggi Mitra Cheese Maggi</li>
+      <li>Thursday — South Station Dosa</li>
+      <li>Friday — Spice Hub Special</li>
+      <li>Saturday — Sweet Spot Brownie</li>
+    </ul>
+  </section>
+
+  <!-- MENU SECTION: hidden initially, shows the selected menu -->
+  <section id="menu-section" class="menu-section hidden">
+    <!-- Chaiverse menu (2 items from your images) -->
+    <div id="chaiverse-menu" class="menu-card hidden">
+      <h3>Chaiverse</h3>
+      <div class="menu-items">
+        <div class="menu-item">
+          <img src="images/chaiverse-ginger.jpg" alt="Ginger">
+          <p>Ginger Tea — ₹15</p>
+          <button onclick="addToCart('Ginger Tea', 15)">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <img src="images/chaiverse-kadak.jpg" alt="Kadak">
+          <p>Kadak Chai — ₹20</p>
+          <button onclick="addToCart('Kadak Chai', 20)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Juice Junction -->
+    <div id="juicejunction-menu" class="menu-card hidden">
+      <h3>Juice Junction</h3>
+      <div class="menu-items">
+        <div class="menu-item">
+          <img src="images/juicejunction-mango.jpg" alt="Mango">
+          <p>Mango Juice — ₹40</p>
+          <button onclick="addToCart('Mango Juice', 40)">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <img src="images/juicejunction-watermelon.jpg" alt="Watermelon">
+          <p>Watermelon Juice — ₹35</p>
+          <button onclick="addToCart('Watermelon Juice', 35)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Maggi Mitra -->
+    <div id="maggimitra-menu" class="menu-card hidden">
+      <h3>Maggi Mitra</h3>
+      <div class="menu-items">
+        <div class="menu-item">
+          <img src="images/maggimitra-classic.jpg" alt="Classic Maggi">
+          <p>Classic Maggi — ₹40</p>
+          <button onclick="addToCart('Classic Maggi', 40)">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <img src="images/maggimitra-cheese.jpg" alt="Cheese Maggi">
+          <p>Cheese Maggi — ₹60</p>
+          <button onclick="addToCart('Cheese Maggi', 60)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- South Station -->
+    <div id="southstation-menu" class="menu-card hidden">
+      <h3>South Station</h3>
+      <div class="menu-items">
+        <div class="menu-item">
+          <img src="images/southstation-idli.jpg" alt="Idli">
+          <p>Idli — ₹30</p>
+          <button onclick="addToCart('Idli', 30)">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <img src="images/southstation-dosa.jpg" alt="Dosa">
+          <p>Dosa — ₹40</p>
+          <button onclick="addToCart('Dosa', 40)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Spice Hub -->
+    <div id="spicehub-menu" class="menu-card hidden">
+      <h3>Spice Hub</h3>
+      <div class="menu-items">
+        <div class="menu-item">
+          <img src="images/spicehub-friedrice.jpg" alt="Fried Rice">
+          <p>Fried Rice — ₹70</p>
+          <button onclick="addToCart('Fried Rice', 70)">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <img src="images/spicehub-chilipaneer.jpg" alt="Chili Paneer">
+          <p>Chili Paneer — ₹90</p>
+          <button onclick="addToCart('Chilli Paneer', 90)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sweet Spot -->
+    <div id="sweetspot-menu" class="menu-card hidden">
+      <h3>Sweet Spot</h3>
+      <div class="menu-items">
+        <div class="menu-item">
+          <img src="images/sweetspot-brownie.jpg" alt="Brownie">
+          <p>Brownie — ₹50</p>
+          <button onclick="addToCart('Brownie', 50)">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+          <img src="images/sweetspot-vanilla.jpg" alt="Vanilla">
+          <p>Vanilla — ₹60</p>
+          <button onclick="addToCart('Vanilla', 60)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-actions">
+      <button id="back-btn" class="menu-btn" onclick="hideMenu()">⬅ Back to spots</button>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>© MVSR Food Hub — Hackathon Demo</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <!-- 🛍️ Cart & Order Section -->
+<section id="order-system" class="order-section">
+  <h2>Your Cart</h2>
+  <div class="cart-box">
+    <ul id="cart-items"></ul>
+    <p id="cart-total">Total: ₹0</p>
+    <button id="order-now-btn" class="order-btn">Order Now</button>
+  </div>
+  <p id="order-status" class="order-status"></p>
+</section>
+<script>
+let cart = [];
+let total = 0;
+
+// ✅ Function to add an item to the cart
+function addToCart(itemName, price) {
+  cart.push({ itemName, price });
+  total += price;
+  updateCart();
+}
+
+// ✅ Function to update cart display
+function updateCart() {
+  const cartList = document.getElementById('cart-items');
+  const totalDisplay = document.getElementById('cart-total');
+  cartList.innerHTML = '';
+
+  cart.forEach((item, index) => {
+    const li = document.createElement('li');
+    li.textContent = `${item.itemName} - ₹${item.price}`;
+    cartList.appendChild(li);
+  });
+
+  totalDisplay.textContent = `Total: ₹${total}`;
+}
+
+// ✅ Function to handle order now
+document.getElementById('order-now-btn').addEventListener('click', () => {
+  if (cart.length === 0) {
+    alert('Your cart is empty!');
+    return;
+  }
+
+  const token = 'MVSR' + Math.floor(1000 + Math.random() * 9000);
+  document.getElementById('order-status').textContent =
+    `✅ Order placed successfully! Your token number is ${token}`;
+
+  // Reset after ordering
+  cart = [];
+  total = 0;
+  updateCart();
+});
+</script>
+
+</body>
+</html>
